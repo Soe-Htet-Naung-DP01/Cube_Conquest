@@ -19,6 +19,7 @@ public class AIMovement : MonoBehaviour
         if(gameStateChecker.isPlayerTurn) return;
         if(gameStateChecker.isAITurn)
         {
+            
             //Temporary movement
             dirInt = Random.Range(1,5);
             if(dirInt == 1)
@@ -34,6 +35,7 @@ public class AIMovement : MonoBehaviour
             else if(dirInt == 3)
             {
                 RollAndMove(Vector3.left);
+
                 AITurnChange();
             }
             else if(dirInt == 4)
@@ -65,8 +67,9 @@ public class AIMovement : MonoBehaviour
     }
 
     public void AITurnChange()
-    {
+    {   
         gameStateChecker.isPlayerTurn = true;
         gameStateChecker.isAITurn = false;
     }
+
 }
