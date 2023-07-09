@@ -25,9 +25,7 @@ public class PlayerController : MonoBehaviour
             {
                 RollAndMove(Vector3.left);
             }
-            gameStateChecker.isPlayerTurn = false;
-            gameStateChecker.isAITurn = true;
-            gameStateChecker.turnCount += 1;
+            PlayerTurnChange();
         }
         else if (Input.GetKeyDown(KeyCode.D)) 
         {
@@ -35,9 +33,7 @@ public class PlayerController : MonoBehaviour
             {
                 RollAndMove(Vector3.right);
             }
-            gameStateChecker.isPlayerTurn = false;
-            gameStateChecker.isAITurn = true;
-            gameStateChecker.turnCount += 1;
+            PlayerTurnChange();
         }
         else if (Input.GetKeyDown(KeyCode.W)) 
         {
@@ -45,9 +41,7 @@ public class PlayerController : MonoBehaviour
             {
                 RollAndMove(Vector3.forward);
             }
-            gameStateChecker.isPlayerTurn = false;
-            gameStateChecker.isAITurn = true;
-            gameStateChecker.turnCount += 1;
+            PlayerTurnChange();
         }
         else if (Input.GetKeyDown(KeyCode.S)) 
         {
@@ -55,9 +49,7 @@ public class PlayerController : MonoBehaviour
             {
                 RollAndMove(Vector3.back);
             }
-            gameStateChecker.isPlayerTurn = false;
-            gameStateChecker.isAITurn = true;
-            gameStateChecker.turnCount += 1;
+            PlayerTurnChange();
         }
 
         void RollAndMove (Vector3 dir)
@@ -78,5 +70,12 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         isMoving = false;
+    }
+
+    public void PlayerTurnChange()
+    {
+        gameStateChecker.isPlayerTurn = false;
+        gameStateChecker.isAITurn = true;
+        gameStateChecker.turnCount += 1;
     }
 }
