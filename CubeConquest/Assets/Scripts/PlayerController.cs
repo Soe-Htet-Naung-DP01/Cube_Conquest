@@ -5,51 +5,28 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float cubeSpeed = 5f;
-    GameStateChecker gameStateChecker;
-    [SerializeField] GameObject gameStateCube;
     private bool isMoving;
 
-    private void Awake() 
-    {
-        gameStateChecker = gameStateCube.GetComponent<GameStateChecker>();
-    }
     void Update()
     {
         if(isMoving) return;
-        if(gameStateChecker.isAITurn) return;
 
         //Only move it is player's turn
         if (Input.GetKeyDown(KeyCode.A)) 
         {
-            if(gameStateChecker.isPlayerTurn == true)
-            {
-                RollAndMove(Vector3.left);
-            }
-            PlayerTurnChange();
+            RollAndMove(Vector3.left);
         }
         else if (Input.GetKeyDown(KeyCode.D)) 
         {
-            if(gameStateChecker.isPlayerTurn == true)
-            {
-                RollAndMove(Vector3.right);
-            }
-            PlayerTurnChange();
+            RollAndMove(Vector3.right);
         }
         else if (Input.GetKeyDown(KeyCode.W)) 
         {
-            if(gameStateChecker.isPlayerTurn == true)
-            {
-                RollAndMove(Vector3.forward);
-            }
-            PlayerTurnChange();
+            RollAndMove(Vector3.forward);
         }
         else if (Input.GetKeyDown(KeyCode.S)) 
         {
-            if(gameStateChecker.isPlayerTurn == true)
-            {
-                RollAndMove(Vector3.back);
-            }
-            PlayerTurnChange();
+            RollAndMove(Vector3.back);
         }
 
         void RollAndMove (Vector3 dir)
@@ -70,12 +47,5 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         isMoving = false;
-    }
-
-    public void PlayerTurnChange()
-    {
-        gameStateChecker.isPlayerTurn = false;
-        gameStateChecker.isAITurn = true;
-        gameStateChecker.turnCount += 1;
     }
 }
